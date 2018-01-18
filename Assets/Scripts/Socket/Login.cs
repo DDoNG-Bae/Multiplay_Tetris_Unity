@@ -12,19 +12,28 @@ public class Login : MonoBehaviour {
 	void Start () {
         socket = Socket.Connect("http://ec2-52-78-8-84.ap-northeast-2.compute.amazonaws.com:3000"+"/login");
         
+        /*
+         * res 
+         * "ID" : Wrong ID
+         * "PASS" Wrong PASSWORD
+         * "SUCCESS" : LOGIN Success
+         */
         socket.On("loginResult",(string res)=>{
             Debug.Log(res);
         });
 
     }
 
+    
     public void login()
     {
         User2 user = new User2();
         user.id = idInput.text;
         user.pass = passInput.text;
-
-        socket.EmitJson("login",JsonUtility.ToJson(user));
+        var json = JsonUtility.ToJson(user);
+        
+        //@param JSonString 
+        socket.EmitJson("login",json);
     }
 	
 	// Update is called once per frame
