@@ -17,7 +17,7 @@ public class reg : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        socket = Socket.Connect("http://ec2-52-78-8-84.ap-northeast-2.compute.amazonaws.com:3000/" + "regist");
+        socket = Socket.Connect("http://ec2-52-78-8-84.ap-northeast-2.compute.amazonaws.com:3000/" + "signUp");
         socket.On("regResult", (string code) =>
          {
              Debug.Log("regResult" + code);
@@ -48,7 +48,7 @@ public class reg : MonoBehaviour {
         user.name = nameInput.text;
         user.phone = phoneInput.text;
 
-        socket.EmitJson("register",JsonUtility.ToJson(user));
+        socket.EmitJson("signUp", JsonUtility.ToJson(user));
 
     }
 
