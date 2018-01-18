@@ -28,6 +28,10 @@ public class reg : MonoBehaviour {
              Debug.Log("check ID code : " + code);
          });
         		
+
+
+
+
 	}
 	
 	// Update is called once per frame
