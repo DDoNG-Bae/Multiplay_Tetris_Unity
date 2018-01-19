@@ -22,6 +22,7 @@ public class GameScene : MonoBehaviour
     {
         SpawnBlock();
         mGrid = new Transform[mGridWidth, mGridHeight];
+        StartCoroutine(FallDown());
        
         
     }
@@ -52,10 +53,10 @@ public class GameScene : MonoBehaviour
         
     }
 
-    public void FallDownBtnAction()
+    public void DownBtnAction()
     {
 
-        CurBlock.FallDown();
+        CurBlock.DownMove();
     }
 
     public void RotateBtnAction()
@@ -77,7 +78,7 @@ public class GameScene : MonoBehaviour
     {
         int ti = Random.Range(0, 7);
         CurBlock = Instantiate<Tetrimino>(mBlockContainer[ti].GetComponentInChildren<Tetrimino>());
-        CurBlock.transform.position = new Vector3(0, 11, 0);
+        CurBlock.transform.position = new Vector3(5, 19, 0);
         
         
     }
@@ -150,5 +151,75 @@ public class GameScene : MonoBehaviour
         }
     }
     
+    IEnumerator FallDown()
+    {
+        for(; ; )
+        {
+            CurBlock.DownMove();
+
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    public bool IsRowFull(int tGridY)
+    {
+        for(int tx = 0; tx<mGridWidth; tx++)
+        {
+            if(mGrid[tx,tGridY] == null)
+            {
+                return false;
+            }
+            
+        }
+        return true;
+    }
+
+    public void DeleteBlock(int tGridY)
+    {
+        for(int tx=0; tx<mGridWidth; tx++)
+        {
+            Destroy(mGrid[tx, tGridY].gameObject);
+
+            mGrid[tx, tGridY] = null;
+        }
+    }
+
+    public void RowDown(int tGridY)
+    {
+        for(int tx=0; tx<mGridWidth; tx++)
+        {
+            if(mGrid[tx,tGridY] !=null)
+            {
+                mGrid[tx, tGridY - 1] = mGrid[tx, tGridY];
+
+                mGrid[tx, tGridY] = null;
+
+                mGrid[tx, tGridY - 1].position+= new Vector3(0, -1, 0);
+            }
+        }
+    }
+
+    public void AllRowDown(int tGridY)
+    {
+        for (int ti = tGridY; ti < mGridHeight;ti++)
+        {
+            RowDown(ti);
+        }
+    }
+
+    public void DeleteRow()
+    {
+        for(int ty=0; ty<mGridHeight; ty++)
+        {
+            if(IsRowFull(ty)==true)
+            {
+                DeleteBlock(ty);
+
+                AllRowDown(ty + 1);
+
+                ty--;
+            }
+        }
+    }
 
 }
