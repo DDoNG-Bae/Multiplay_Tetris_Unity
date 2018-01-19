@@ -12,6 +12,9 @@ public class GameScene : MonoBehaviour
     public int mGridWidth = 11;
 
     public Transform[,] mGrid;
+    public int[,] mTestGrid = new int[11, 23]; 
+
+    
    
 
 
@@ -19,6 +22,7 @@ public class GameScene : MonoBehaviour
     {
         SpawnBlock();
         mGrid = new Transform[mGridWidth, mGridHeight];
+       
         
     }
 
@@ -73,13 +77,14 @@ public class GameScene : MonoBehaviour
     {
         int ti = Random.Range(0, 7);
         CurBlock = Instantiate<Tetrimino>(mBlockContainer[ti].GetComponentInChildren<Tetrimino>());
-        CurBlock.transform.position = new Vector3(0, 20.5f, 0);
+        CurBlock.transform.position = new Vector3(0, 11, 0);
+        
         
     }
 
     public bool CheckIsInside(Vector3 tVec)
     {
-        return (((int)tVec.x >=-mGridWidth) && ((int)tVec.x < mGridWidth) && (tVec.y > 0));
+        return (((int)tVec.x >=0) && ((int)tVec.x < mGridWidth) && (tVec.y > 0));
     }
 
     public Vector2 Round (Vector2 tVec)
@@ -112,6 +117,7 @@ public class GameScene : MonoBehaviour
                 mGrid[(int)tVec.x, (int)tVec.y] = Block;
             }
         }
+
     }
 
     public Transform GetGridTransform(Vector2 tVec)
@@ -123,6 +129,24 @@ public class GameScene : MonoBehaviour
         else
         {
             return mGrid[(int)tVec.x, (int)tVec.y];
+        }
+    }
+
+    public void UpdateTestGrid()
+    {
+       for(int tx =0; tx<11;tx++)
+        {
+            for(int ty=0;ty<23;ty++)
+            {
+                if(mGrid[tx,ty] == null)
+                {
+                    mTestGrid[tx, ty] = 1;
+                }
+                else
+                {
+                    mTestGrid[tx, ty] = 0;
+                }
+            }
         }
     }
     

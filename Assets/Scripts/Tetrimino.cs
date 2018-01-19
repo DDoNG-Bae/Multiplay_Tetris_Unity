@@ -68,7 +68,7 @@ public class Tetrimino : MonoBehaviour {
         {
             FindObjectOfType<GameScene>().GridUpdate(this);
 
-                }
+        }
     }
 
     public bool CheckPosition()
@@ -85,6 +85,7 @@ public class Tetrimino : MonoBehaviour {
             if (FindObjectOfType<GameScene>().GetGridTransform(tVec) != null && FindObjectOfType<GameScene>().GetGridTransform(tVec).parent != transform)
             {
                 return false;
+                
             }
 
         }
