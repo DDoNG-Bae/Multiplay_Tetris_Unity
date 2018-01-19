@@ -55,7 +55,7 @@ public class GameScene : MonoBehaviour
          CurBlock.LeftMove();
        
     }
-
+     
     public void RightBtnAction()
     {
         
@@ -76,7 +76,17 @@ public class GameScene : MonoBehaviour
 
     public void BlockSaveBtnAction()
     {
+        if(SaveBlock == null)
+        {
 
+            SaveBlock = CurBlock;
+            SaveBlock.transform.position = CoordBlockPos(SaveBlockUIPos.position);
+            SaveBlock.enabled = false;
+            GridUpdate(SaveBlock);
+            SpawnBlock();
+           
+
+        }
     }
 
     public void StraightFallBtnAction()
@@ -107,8 +117,8 @@ public class GameScene : MonoBehaviour
             NextBlock = Instantiate<Tetrimino>(mBlockContainer[tNextType].GetComponentInChildren<Tetrimino>());
             NextBlock.transform.position = CoordBlockPos(NextBlockUIPos.position);
         }
-        
-        
+
+      
     }
 
     public bool CheckIsInside(Vector3 tVec)

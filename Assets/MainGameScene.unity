@@ -1425,7 +1425,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 518964463}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 209.5, y: 284.5, z: 0}
+  m_LocalPosition: {x: 137, y: 284.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2025655945}
@@ -4127,7 +4127,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 277085399}
-        m_MethodName: StraightFallBtnAction
+        m_MethodName: BlockSaveBtnAction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
