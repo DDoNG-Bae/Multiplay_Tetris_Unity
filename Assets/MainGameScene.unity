@@ -938,7 +938,11 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 501825958}
 =======
+<<<<<<< HEAD
 >>>>>>> parent of 999109d... GameScene - DeleteRow 관련 함수 추가
+=======
+>>>>>>> ebca0964b4ea81b09f4df6eea76e56377d27b9fe
+>>>>>>> 4ab96c0362e89f38043a618b63b4d0d93076a6fe
 --- !u!1 &518964463
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,7 +1029,11 @@ RectTransform:
   m_LocalPosition: {x: 209.5, y: 284.5, z: 0}
 =======
   m_LocalPosition: {x: 178, y: 284.5, z: 0}
+<<<<<<< HEAD
 >>>>>>> parent of 999109d... GameScene - DeleteRow 관련 함수 추가
+=======
+>>>>>>> ebca0964b4ea81b09f4df6eea76e56377d27b9fe
+>>>>>>> 4ab96c0362e89f38043a618b63b4d0d93076a6fe
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2025655945}
@@ -1431,7 +1439,11 @@ Transform:
 --- !u!1 &1086575387
 =======
 --- !u!1 &1190696337
+<<<<<<< HEAD
 >>>>>>> parent of 999109d... GameScene - DeleteRow 관련 함수 추가
+=======
+>>>>>>> ebca0964b4ea81b09f4df6eea76e56377d27b9fe
+>>>>>>> 4ab96c0362e89f38043a618b63b4d0d93076a6fe
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1450,7 +1462,11 @@ GameObject:
   - component: {fileID: 1190696339}
   m_Layer: 5
   m_Name: UIPanel
+<<<<<<< HEAD
 >>>>>>> parent of 999109d... GameScene - DeleteRow 관련 함수 추가
+=======
+>>>>>>> ebca0964b4ea81b09f4df6eea76e56377d27b9fe
+>>>>>>> 4ab96c0362e89f38043a618b63b4d0d93076a6fe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1460,7 +1476,11 @@ GameObject:
 --- !u!224 &1086575388
 =======
 --- !u!224 &1190696338
+<<<<<<< HEAD
 >>>>>>> parent of 999109d... GameScene - DeleteRow 관련 함수 추가
+=======
+>>>>>>> ebca0964b4ea81b09f4df6eea76e56377d27b9fe
+>>>>>>> 4ab96c0362e89f38043a618b63b4d0d93076a6fe
 RectTransform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1498,7 +1518,11 @@ RectTransform:
   m_SizeDelta: {x: -82.2, y: -243.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1190696339
+<<<<<<< HEAD
 >>>>>>> parent of 999109d... GameScene - DeleteRow 관련 함수 추가
+=======
+>>>>>>> ebca0964b4ea81b09f4df6eea76e56377d27b9fe
+>>>>>>> 4ab96c0362e89f38043a618b63b4d0d93076a6fe
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1521,7 +1545,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+<<<<<<< HEAD
 >>>>>>> parent of 999109d... GameScene - DeleteRow 관련 함수 추가
+=======
+>>>>>>> ebca0964b4ea81b09f4df6eea76e56377d27b9fe
+>>>>>>> 4ab96c0362e89f38043a618b63b4d0d93076a6fe
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1554,7 +1582,11 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
 --- !u!222 &1190696340
+<<<<<<< HEAD
 >>>>>>> parent of 999109d... GameScene - DeleteRow 관련 함수 추가
+=======
+>>>>>>> ebca0964b4ea81b09f4df6eea76e56377d27b9fe
+>>>>>>> 4ab96c0362e89f38043a618b63b4d0d93076a6fe
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2103,7 +2135,11 @@ Transform:
 =======
   m_GameObject: {fileID: 1190696337}
 --- !u!1 &1359314255
+<<<<<<< HEAD
 >>>>>>> parent of 999109d... GameScene - DeleteRow 관련 함수 추가
+=======
+>>>>>>> ebca0964b4ea81b09f4df6eea76e56377d27b9fe
+>>>>>>> 4ab96c0362e89f38043a618b63b4d0d93076a6fe
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2122,7 +2158,11 @@ GameObject:
   - component: {fileID: 1359314257}
   m_Layer: 5
   m_Name: Text
+<<<<<<< HEAD
 >>>>>>> parent of 999109d... GameScene - DeleteRow 관련 함수 추가
+=======
+>>>>>>> ebca0964b4ea81b09f4df6eea76e56377d27b9fe
+>>>>>>> 4ab96c0362e89f38043a618b63b4d0d93076a6fe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2132,7 +2172,11 @@ GameObject:
 --- !u!224 &1347995699
 =======
 --- !u!224 &1359314256
+<<<<<<< HEAD
 >>>>>>> parent of 999109d... GameScene - DeleteRow 관련 함수 추가
+=======
+>>>>>>> ebca0964b4ea81b09f4df6eea76e56377d27b9fe
+>>>>>>> 4ab96c0362e89f38043a618b63b4d0d93076a6fe
 RectTransform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2167,7 +2211,11 @@ RectTransform:
   m_SizeDelta: {x: 371, y: 40.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1359314257
+<<<<<<< HEAD
 >>>>>>> parent of 999109d... GameScene - DeleteRow 관련 함수 추가
+=======
+>>>>>>> ebca0964b4ea81b09f4df6eea76e56377d27b9fe
+>>>>>>> 4ab96c0362e89f38043a618b63b4d0d93076a6fe
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2176,7 +2224,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1347995698}
 =======
   m_GameObject: {fileID: 1359314255}
+<<<<<<< HEAD
 >>>>>>> parent of 999109d... GameScene - DeleteRow 관련 함수 추가
+=======
+>>>>>>> ebca0964b4ea81b09f4df6eea76e56377d27b9fe
+>>>>>>> 4ab96c0362e89f38043a618b63b4d0d93076a6fe
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -2203,7 +2255,11 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3
+<<<<<<< HEAD
 >>>>>>> parent of 999109d... GameScene - DeleteRow 관련 함수 추가
+=======
+>>>>>>> ebca0964b4ea81b09f4df6eea76e56377d27b9fe
+>>>>>>> 4ab96c0362e89f38043a618b63b4d0d93076a6fe
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -2217,7 +2273,11 @@ MonoBehaviour:
 =======
   m_Text: Next Block
 --- !u!222 &1359314258
+<<<<<<< HEAD
 >>>>>>> parent of 999109d... GameScene - DeleteRow 관련 함수 추가
+=======
+>>>>>>> ebca0964b4ea81b09f4df6eea76e56377d27b9fe
+>>>>>>> 4ab96c0362e89f38043a618b63b4d0d93076a6fe
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2475,7 +2535,11 @@ Prefab:
   m_IsPrefabParent: 0
 =======
   m_GameObject: {fileID: 1359314255}
+<<<<<<< HEAD
 >>>>>>> parent of 999109d... GameScene - DeleteRow 관련 함수 추가
+=======
+>>>>>>> ebca0964b4ea81b09f4df6eea76e56377d27b9fe
+>>>>>>> 4ab96c0362e89f38043a618b63b4d0d93076a6fe
 --- !u!1 &1470463843
 GameObject:
   m_ObjectHideFlags: 0
@@ -3385,7 +3449,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 71}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
 >>>>>>> parent of 999109d... GameScene - DeleteRow 관련 함수 추가
+=======
+>>>>>>> ebca0964b4ea81b09f4df6eea76e56377d27b9fe
+>>>>>>> 4ab96c0362e89f38043a618b63b4d0d93076a6fe
 --- !u!1 &2025655944
 GameObject:
   m_ObjectHideFlags: 0
