@@ -52,15 +52,13 @@ public class Tetrimino : MonoBehaviour {
         }
        
     }
-    public void DownMove()
+    public void FallDown()
     {
         this.transform.position += new Vector3(0, -1, 0);
 
         if(CheckPosition() == false)
         {
             this.transform.position += new Vector3(0, 1, 0);
-
-            FindObjectOfType<GameScene>().DeleteRow();
 
             mIsBind = true;
 
