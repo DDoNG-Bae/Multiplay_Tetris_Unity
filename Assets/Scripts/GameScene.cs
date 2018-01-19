@@ -32,6 +32,7 @@ public class GameScene : MonoBehaviour
     {
         SpawnBlock();
         mGrid = new Transform[mGridWidth, mGridHeight];
+        StartCoroutine(FallDown());
        
         
     }
@@ -62,10 +63,10 @@ public class GameScene : MonoBehaviour
         
     }
 
-    public void FallDownBtnAction()
+    public void DownBtnAction()
     {
 
-        CurBlock.FallDown();
+        CurBlock.DownMove();
     }
 
     public void RotateBtnAction()
@@ -85,7 +86,6 @@ public class GameScene : MonoBehaviour
 
     public void SpawnBlock()
     {
-<<<<<<< HEAD
         int tCurType = Random.Range(0, 7);
         int tNextType = Random.Range(0, 7);
 
@@ -107,6 +107,7 @@ public class GameScene : MonoBehaviour
             NextBlock = Instantiate<Tetrimino>(mBlockContainer[tNextType].GetComponentInChildren<Tetrimino>());
             NextBlock.transform.position = CoordBlockPos(NextBlockUIPos.position);
         }
+<<<<<<< HEAD
 =======
         int ti = Random.Range(0, 7);
         CurBlock = Instantiate<Tetrimino>(mBlockContainer[ti].GetComponentInChildren<Tetrimino>());
@@ -116,6 +117,8 @@ public class GameScene : MonoBehaviour
 =======
 >>>>>>> ebca0964b4ea81b09f4df6eea76e56377d27b9fe
 >>>>>>> 4ab96c0362e89f38043a618b63b4d0d93076a6fe
+=======
+>>>>>>> parent of e5cabb6... no message
         
         
     }
@@ -188,7 +191,6 @@ public class GameScene : MonoBehaviour
         }
     }
     
-<<<<<<< HEAD
     IEnumerator FallDown()
     {
         for(; ; )
@@ -261,12 +263,15 @@ public class GameScene : MonoBehaviour
             }
         }
     }
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> parent of 999109d... GameScene - DeleteRow 관련 함수 추가
 =======
 >>>>>>> ebca0964b4ea81b09f4df6eea76e56377d27b9fe
 >>>>>>> 4ab96c0362e89f38043a618b63b4d0d93076a6fe
+=======
+>>>>>>> parent of e5cabb6... no message
 
     public void ScoreUp()
     {
