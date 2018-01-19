@@ -7,22 +7,12 @@ public class GameScene : MonoBehaviour
 
     public GameObject[] mBlockContainer = new GameObject[7];
     public Tetrimino CurBlock;
-    public Tetrimino NextBlock;
-    public Tetrimino SaveBlock;
 
     public int mGridHeight = 23;
     public int mGridWidth = 11;
 
-    public Camera mCamera;
-    public Transform NextBlockUIPos;
-    public Transform SaveBlockUIPos;
-
     public Transform[,] mGrid;
-    public int[,] mTestGrid = new int[11, 23];
-
-    public int mScore = 0;
-
-    
+    public int[,] mTestGrid = new int[11, 23]; 
 
     
    
@@ -86,27 +76,9 @@ public class GameScene : MonoBehaviour
 
     public void SpawnBlock()
     {
-        int tCurType = Random.Range(0, 7);
-        int tNextType = Random.Range(0, 7);
-
-        if (NextBlock == null)
-        {
-            CurBlock = Instantiate<Tetrimino>(mBlockContainer[tCurType].GetComponentInChildren<Tetrimino>());
-            CurBlock.transform.position = new Vector3((mGridWidth+1)/2, mGridHeight -2, 0);
-
-            NextBlock = Instantiate<Tetrimino>(mBlockContainer[tNextType].GetComponentInChildren<Tetrimino>());
-            NextBlock.transform.position = CoordBlockPos(NextBlockUIPos.position);
-            NextBlock.enabled = false;
-            
-        }
-        else
-        {
-            CurBlock = NextBlock;
-            CurBlock.transform.position = new Vector3((mGridWidth + 1) / 2, mGridHeight - 2, 0);
-
-            NextBlock = Instantiate<Tetrimino>(mBlockContainer[tNextType].GetComponentInChildren<Tetrimino>());
-            NextBlock.transform.position = CoordBlockPos(NextBlockUIPos.position);
-        }
+        int ti = Random.Range(0, 7);
+        CurBlock = Instantiate<Tetrimino>(mBlockContainer[ti].GetComponentInChildren<Tetrimino>());
+        CurBlock.transform.position = new Vector3(5, 19, 0);
         
         
     }
@@ -161,7 +133,7 @@ public class GameScene : MonoBehaviour
         }
     }
 
-    public void UpdateTestGrid()  //네트워크 전송용 Grid 업데이트
+    public void UpdateTestGrid()
     {
        for(int tx =0; tx<11;tx++)
         {
@@ -189,7 +161,7 @@ public class GameScene : MonoBehaviour
         }
     }
 
-    public bool IsRowFull(int tGridY) // 해당 열이 전부 차있는지 체크
+    public bool IsRowFull(int tGridY)
     {
         for(int tx = 0; tx<mGridWidth; tx++)
         {
@@ -202,7 +174,7 @@ public class GameScene : MonoBehaviour
         return true;
     }
 
-    public void DeleteBlock(int tGridY) //전부 차있는 열의 블록 삭제
+    public void DeleteBlock(int tGridY)
     {
         for(int tx=0; tx<mGridWidth; tx++)
         {
@@ -212,7 +184,7 @@ public class GameScene : MonoBehaviour
         }
     }
 
-    public void RowDown(int tGridY)  
+    public void RowDown(int tGridY)
     {
         for(int tx=0; tx<mGridWidth; tx++)
         {
@@ -227,7 +199,7 @@ public class GameScene : MonoBehaviour
         }
     }
 
-    public void AllRowDown(int tGridY) //블록 삭제 후 해당 열 위에 위치한 모든 열의 블록을 y축으로 -1씩 내림
+    public void AllRowDown(int tGridY)
     {
         for (int ti = tGridY; ti < mGridHeight;ti++)
         {
@@ -246,30 +218,8 @@ public class GameScene : MonoBehaviour
                 AllRowDown(ty + 1);
 
                 ty--;
-
-                ScoreUp();
             }
         }
     }
 
-    public void ScoreUp()
-    {
-        mScore += 100;
-    }
-
-    public Vector3 CoordBlockPos(Vector3 tUIPos) // NextBlock, SaveBlock 배치를 위한 UI POS 보정(Screen->world)
-    {
-        Vector3 tCoordVec;
-
-        mCamera = Camera.main;
-
-        tCoordVec = mCamera.ScreenToWorldPoint(tUIPos);
-
-        tCoordVec = new Vector3(tCoordVec.x, tCoordVec.y-3, 0);
-
-
-        return tCoordVec;
-    }
-
-    
 }
