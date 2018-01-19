@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using socket.io;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class Login : MonoBehaviour {
     public InputField idInput;
     public InputField passInput;
@@ -20,6 +21,11 @@ public class Login : MonoBehaviour {
          */
         socket.On("loginResult",(string res)=>{
             Debug.Log(res);
+
+            if(res == "\"SUCCESS\"")
+            {
+                SceneManager.LoadScene("SelectGameTypeScene");
+            }
         });
 
     }
@@ -40,6 +46,11 @@ public class Login : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void EnterSignScene()
+    {
+        SceneManager.LoadScene("SignUp");
+    }
 }
 
 public class User2

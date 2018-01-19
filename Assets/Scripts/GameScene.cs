@@ -84,8 +84,12 @@ public class GameScene : MonoBehaviour
             SaveBlock.enabled = false;
             GridUpdate(SaveBlock);
             SpawnBlock();
-           
+        }
+        else
+        {
+      
 
+            
         }
     }
 
