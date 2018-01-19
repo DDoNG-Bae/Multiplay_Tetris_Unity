@@ -108,7 +108,6 @@ public class GameScene : MonoBehaviour
             NextBlock.transform.position = CoordBlockPos(NextBlockUIPos.position);
         }
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
         int ti = Random.Range(0, 7);
         CurBlock = Instantiate<Tetrimino>(mBlockContainer[ti].GetComponentInChildren<Tetrimino>());
@@ -118,8 +117,6 @@ public class GameScene : MonoBehaviour
 =======
 >>>>>>> ebca0964b4ea81b09f4df6eea76e56377d27b9fe
 >>>>>>> 4ab96c0362e89f38043a618b63b4d0d93076a6fe
-=======
->>>>>>> parent of e5cabb6... no message
 =======
 >>>>>>> parent of e5cabb6... no message
         
@@ -267,15 +264,12 @@ public class GameScene : MonoBehaviour
         }
     }
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 >>>>>>> parent of 999109d... GameScene - DeleteRow 관련 함수 추가
 =======
 >>>>>>> ebca0964b4ea81b09f4df6eea76e56377d27b9fe
 >>>>>>> 4ab96c0362e89f38043a618b63b4d0d93076a6fe
-=======
->>>>>>> parent of e5cabb6... no message
 =======
 >>>>>>> parent of e5cabb6... no message
 
