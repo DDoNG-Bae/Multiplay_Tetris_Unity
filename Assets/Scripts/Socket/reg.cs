@@ -41,12 +41,7 @@ public class reg : MonoBehaviour {
 
     public void submit()
     {
-        User user = new User();
-        user.id = idInput.text;
-        user.pass = passInput1.text;
-        user.pass2 = passInput2.text;
-        user.name = nameInput.text;
-        user.phone = phoneInput.text;
+        User user = new User(idInput.text, passInput1.text, passInput2.text, nameInput.text, phoneInput.text);
 
         socket.EmitJson("signUp", JsonUtility.ToJson(user));
 
@@ -68,4 +63,18 @@ public class User
     public string pass2;
     public string name;
     public string phone;
+
+    public User(string id, string pass, string pass2, string name, string phone)
+    {
+        this.id = id;
+        this.pass = pass;
+        this.pass2 = pass2;
+        this.name = name;
+        this.phone = phone;
+    }
+
+    public string toJsonString()
+    {
+        return JsonUtility.ToJson(this);
+    }
 }
