@@ -32,6 +32,7 @@ public class GameScene : MonoBehaviour
     {
         SpawnBlock();
         mGrid = new Transform[mGridWidth, mGridHeight];
+        StartCoroutine(FallDown());
        
         
     }
@@ -62,10 +63,10 @@ public class GameScene : MonoBehaviour
         
     }
 
-    public void FallDownBtnAction()
+    public void DownBtnAction()
     {
 
-        CurBlock.FallDown();
+        CurBlock.DownMove();
     }
 
     public void RotateBtnAction()
@@ -85,7 +86,6 @@ public class GameScene : MonoBehaviour
 
     public void SpawnBlock()
     {
-<<<<<<< HEAD
         int tCurType = Random.Range(0, 7);
         int tNextType = Random.Range(0, 7);
 
@@ -107,11 +107,6 @@ public class GameScene : MonoBehaviour
             NextBlock = Instantiate<Tetrimino>(mBlockContainer[tNextType].GetComponentInChildren<Tetrimino>());
             NextBlock.transform.position = CoordBlockPos(NextBlockUIPos.position);
         }
-=======
-        int ti = Random.Range(0, 7);
-        CurBlock = Instantiate<Tetrimino>(mBlockContainer[ti].GetComponentInChildren<Tetrimino>());
-        CurBlock.transform.position = new Vector3(0, 11, 0);
->>>>>>> parent of 999109d... GameScene - DeleteRow 관련 함수 추가
         
         
     }
@@ -184,7 +179,6 @@ public class GameScene : MonoBehaviour
         }
     }
     
-<<<<<<< HEAD
     IEnumerator FallDown()
     {
         for(; ; )
@@ -257,8 +251,6 @@ public class GameScene : MonoBehaviour
             }
         }
     }
-=======
->>>>>>> parent of 999109d... GameScene - DeleteRow 관련 함수 추가
 
     public void ScoreUp()
     {
