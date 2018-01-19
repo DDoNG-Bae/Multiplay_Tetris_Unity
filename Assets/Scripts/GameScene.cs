@@ -32,7 +32,6 @@ public class GameScene : MonoBehaviour
     {
         SpawnBlock();
         mGrid = new Transform[mGridWidth, mGridHeight];
-        StartCoroutine(FallDown());
        
         
     }
@@ -63,10 +62,10 @@ public class GameScene : MonoBehaviour
         
     }
 
-    public void DownBtnAction()
+    public void FallDownBtnAction()
     {
 
-        CurBlock.DownMove();
+        CurBlock.FallDown();
     }
 
     public void RotateBtnAction()
@@ -86,6 +85,7 @@ public class GameScene : MonoBehaviour
 
     public void SpawnBlock()
     {
+<<<<<<< HEAD
         int tCurType = Random.Range(0, 7);
         int tNextType = Random.Range(0, 7);
 
@@ -107,6 +107,11 @@ public class GameScene : MonoBehaviour
             NextBlock = Instantiate<Tetrimino>(mBlockContainer[tNextType].GetComponentInChildren<Tetrimino>());
             NextBlock.transform.position = CoordBlockPos(NextBlockUIPos.position);
         }
+=======
+        int ti = Random.Range(0, 7);
+        CurBlock = Instantiate<Tetrimino>(mBlockContainer[ti].GetComponentInChildren<Tetrimino>());
+        CurBlock.transform.position = new Vector3(0, 11, 0);
+>>>>>>> ebca0964b4ea81b09f4df6eea76e56377d27b9fe
         
         
     }
@@ -179,6 +184,7 @@ public class GameScene : MonoBehaviour
         }
     }
     
+<<<<<<< HEAD
     IEnumerator FallDown()
     {
         for(; ; )
@@ -251,6 +257,8 @@ public class GameScene : MonoBehaviour
             }
         }
     }
+=======
+>>>>>>> ebca0964b4ea81b09f4df6eea76e56377d27b9fe
 
     public void ScoreUp()
     {
