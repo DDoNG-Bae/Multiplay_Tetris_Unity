@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using socket.io;
 public class MultiLobbyScene : MonoBehaviour {
 
     public Room[] mRoomList;

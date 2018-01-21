@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using socket.io;
+﻿using socket.io;
 
-public class MySocket : MonoBehaviour {
+public class MySocket{
     private static Socket socket;
     private static string url = "http://ec2-52-78-8-84.ap-northeast-2.compute.amazonaws.com:3000/";
 
@@ -16,14 +13,4 @@ public class MySocket : MonoBehaviour {
 
         return socket;
     }
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
