@@ -19,11 +19,9 @@ public class reg : MonoBehaviour {
     public bool mIsRightPass = false;
 
     Socket socket;
-    Socket socket2;	// Use this for initialization
-
+    // Use this for initialization
     void Start () {
         socket = Socket.Connect("http://ec2-52-78-8-84.ap-northeast-2.compute.amazonaws.com:3000/" + "signUp");
-        socket2 = Socket.Connect("http://ec2-52-78-8-84.ap-northeast-2.compute.amazonaws.com:3000/" + "channel");
         //@return string code
         //'0'== 오류
         //'1' == 성공
@@ -33,10 +31,10 @@ public class reg : MonoBehaviour {
              Debug.Log("regResult" + code);
             
 
-             if(code == "\"1\""&& mIsRightID ==true)
-             {
-                 EnterLoginScene();
-             }
+             //if(code == "\"1\""&& mIsRightID ==true)
+             //{
+             //    EnterLoginScene();
+             //}
          });
 
 

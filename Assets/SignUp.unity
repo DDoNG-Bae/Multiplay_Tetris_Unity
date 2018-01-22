@@ -510,6 +510,9 @@ MonoBehaviour:
   phoneInput: {fileID: 777385144}
   idCheckBtn: {fileID: 0}
   submitBtn: {fileID: 0}
+  ErrorPhrase: []
+  mIsRightID: 0
+  mIsRightPass: 0
 --- !u!4 &430376712
 Transform:
   m_ObjectHideFlags: 0
