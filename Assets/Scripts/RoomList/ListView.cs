@@ -25,9 +25,7 @@ public class ListView : MonoBehaviour {
             itemTemp = Instantiate(this.itemObject) as GameObject;
             itemObjectTemp = itemTemp.GetComponent<ItemObject>();
 
-            itemObjectTemp.name.text = item.name;
-            itemObjectTemp.host.text = item.host;
-            itemObjectTemp.item.onClick = item.onItemClick;
+            itemObjectTemp.setItem(item.name, item.host, item.isStart, item.onClick);
 
             itemTemp.transform.SetParent(this.content);
         }

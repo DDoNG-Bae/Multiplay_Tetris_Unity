@@ -5,6 +5,6 @@ using UnityEngine.UI;
 public class ItemData{
     public string name;
     public string host;
-
-    public Button.ButtonClickedEvent onItemClick;
+    public bool isStart;
+    public Button.ButtonClickedEvent onClick;
 }

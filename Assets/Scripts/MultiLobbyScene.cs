@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.
 using UnityEngine;
 using socket.io;
 
@@ -9,6 +10,7 @@ public class MultiLobbyScene : MonoBehaviour {
     Socket socket;
     // Use this for initialization
     void Start() {
+        socket = Login.socket;
         createRoom("asd");
 
         getRoomList();
@@ -31,18 +33,29 @@ public class MultiLobbyScene : MonoBehaviour {
 
     }
 
+    void joinRoom(string room)
+    {
+        Debug.Log("joinRoom");
+        socket.Emit("joinRoom", room, (string data) =>
+        {
+            Debug.Log("joinRoom " + data);
+        });
+    }
     void createRoom(string room)
     {
+        Debug.Log("createRooM");
         socket.Emit("createRoom", room, (string data) =>
-          {
-              Debug.Log("createRooM : " + data);
-          });
+        {
+            Debug.Log("createRooM : " + data);
+        });
     }
 
     void getRoomList()
     {
-        socket.Emit("getRoomList","\"dsa\"",(string data) =>{
+        Debug.Log("getRoomList");
+        socket.Emit("getRoomList", "dsa", (string data) => {
             Debug.Log("getRoomList" + data);
+            JsonUtility.ToJson(data)
         });
     }
 }
