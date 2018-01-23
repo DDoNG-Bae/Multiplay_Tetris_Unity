@@ -55,41 +55,7 @@ public class MultiLobbyScene : MonoBehaviour {
         socket.Emit("getRoomList", "dsa", (string data) => {
             Debug.Log("getRoomList : " + data);
             JSONObject obj = new JSONObject(data);
-            accessData(obj);
         });
      }
-    void accessData(JSONObject obj)
-    {
-        switch (obj.type)
-        {
-            case JSONObject.Type.OBJECT:
-                for (int i = 0; i < obj.list.Count; i++)
-                {
-                    string key = (string)obj.keys[i];
-                    JSONObject j = (JSONObject)obj.list[i];
-                    Debug.Log(key);
-                    accessData(j);
-                }
-                break;
-            case JSONObject.Type.ARRAY:
-                foreach (JSONObject j in obj.list)
-                {
-                    accessData(j);
-                }
-                break;
-            case JSONObject.Type.STRING:
-                Debug.Log(obj.str);
-                break;
-            case JSONObject.Type.NUMBER:
-                Debug.Log(obj.n);
-                break;
-            case JSONObject.Type.BOOL:
-                Debug.Log(obj.b);
-                break;
-            case JSONObject.Type.NULL:
-                Debug.Log("NULL");
-                break;
-
-        }
-    }
+   
 }
