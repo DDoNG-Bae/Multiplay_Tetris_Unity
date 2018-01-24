@@ -8,24 +8,24 @@ public class ListView : MonoBehaviour {
 
     public Transform content;
 
-    public List<ItemData> itemList;
+    //public List<ItemData> itemList;
 
     void Start()
     {
-        this.binding();
+
     }
 
-    private void binding()
+    private void binding(List<ItemData> itemList)
     {
         GameObject itemTemp;
         ItemObject itemObjectTemp;
-
-        foreach(ItemData item in this.itemList)
+        
+        foreach(ItemData item in itemList)
         {
-            itemTemp = Instantiate(this.itemObject) as GameObject;
+            itemTemp = Instantiate(itemObject) as GameObject;
             itemObjectTemp = itemTemp.GetComponent<ItemObject>();
 
-            itemObjectTemp.setItem(item.name, item.host, item.isStart, item.onClick);
+            itemObjectTemp.setItem(item.name, item.host, item.isStart);
 
             itemTemp.transform.SetParent(this.content);
         }

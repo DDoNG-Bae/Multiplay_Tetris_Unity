@@ -6,5 +6,11 @@ public class ItemData{
     public string name;
     public string host;
     public bool isStart;
-    public Button.ButtonClickedEvent onClick;
+
+    public ItemData(string name, string host, bool isStart)
+    {
+        this.name = name;
+        this.host = host;
+        this.isStart = isStart;
+    }
 }

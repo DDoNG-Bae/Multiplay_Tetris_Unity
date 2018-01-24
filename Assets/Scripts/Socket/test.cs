@@ -1,17 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using socket.io;
 public class test : MonoBehaviour {
 
     // Use this for initialization
     Socket socket;
+    JSONObject obj;
+    public List<ItemData> roomList;
+    
+    public ScrollView scrollView;
+
     void Start () {
         socket = Login.socket;
-
-        createRoom("asd");
+        createRoom("qwer");
         getRoomList();
-        joinRoom("asd");
+        joinRoom("qwer");
+        
     }
 	
 	// Update is called once per frame
@@ -38,46 +44,23 @@ public class test : MonoBehaviour {
     void getRoomList()
     {
         Debug.Log("getRoomList");
-        socket.Emit("getRoomList", "dsa", (string data) => {
-            Debug.Log("getRoomList" + data);
-            JSONObject obj = new JSONObject(data);
-            Debug.Log("json : " + (string)obj.keys[0]);
-            //accessData(obj);
-        });
+        socket.Emit("getRoomList", "dsa", actionTest);
+
     }
-
-
-    void accessData(JSONObject obj)
+    public void actionTest(string data)
     {
-        switch (obj.type)
+        Debug.Log(data);
+        JSONObject jobj = new JSONObject(data).list[0];
+        //Debug.Log(jobj["qwer"]["user"]["asd"]["id"]);
+        for (int i = 0; i < jobj.list.Count; i++)
         {
-            case JSONObject.Type.OBJECT:
-                for (int i = 0; i < obj.list.Count; i++)
-                {
-                    string key = (string)obj.keys[i];
-                    JSONObject j = (JSONObject)obj.list[i];
-                    Debug.Log(key);
-                    accessData(j);
-                }
-                break;
-            case JSONObject.Type.ARRAY:
-                foreach (JSONObject j in obj.list)
-                {
-                    accessData(j);
-                }
-                break;
-            case JSONObject.Type.STRING:
-                Debug.Log(obj.str);
-                break;
-            case JSONObject.Type.NUMBER:
-                Debug.Log(obj.n);
-                break;
-            case JSONObject.Type.BOOL:
-                Debug.Log(obj.b);
-                break;
-            case JSONObject.Type.NULL:
-                Debug.Log("NULL");
-                break;
+            string roomName = jobj.keys[i];
+            string host = jobj.list[i]["host"].str;
+            bool isStart = jobj.list[i]["isStart"].b;
+            Debug.Log("roomList[" + i + "] roomName " + roomName + "host " + host + " isStart " + isStart);
+
+            roomList.Add(new ItemData(roomName, host, isStart));
+            scrollView.binding(roomList);
 
         }
     }

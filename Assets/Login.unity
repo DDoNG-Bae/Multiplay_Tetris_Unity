@@ -142,7 +142,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idInput: {fileID: 758045867}
   passInput: {fileID: 1422494538}
-  socket: {fileID: 0}
 --- !u!4 &188604919
 Transform:
   m_ObjectHideFlags: 0
