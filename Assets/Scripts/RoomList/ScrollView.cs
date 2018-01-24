@@ -7,11 +7,11 @@ public class ScrollView : MonoBehaviour {
 
     public GameObject itemObject;
     public Transform content;
-    //public List<ItemData> itemList;
+    public List<ItemData> itemList;
 
 	// Use this for initialization
 	void Start () {
-        
+        binding();
 	}
 	
 	// Update is called once per frame
@@ -19,19 +19,19 @@ public class ScrollView : MonoBehaviour {
 		
 	}
 
-    public void binding(List<ItemData> itemList)
+    void binding()
     {
-        GameObject itemTemp;
-        ItemObject itemObjectTemp;
+        GameObject tempObj;
+        ItemObject tempItemObj;
 
-        foreach (ItemData item in itemList)
+        foreach(ItemData item in this.itemList)
         {
-            itemTemp = Instantiate(itemObject) as GameObject;
-            itemObjectTemp = itemTemp.GetComponent<ItemObject>();
+            tempObj = Instantiate(this.itemObject) as GameObject;
+            tempItemObj = tempObj.GetComponent<ItemObject>();
 
-            itemObjectTemp.setItem(item.name, item.host, item.isStart);
+            tempItemObj.setItem(item.name, item.host, item.isStart, item.onClick);
 
-            itemTemp.transform.SetParent(this.content);
+            tempObj.transform.SetParent(this.content);
         }
     }
 }

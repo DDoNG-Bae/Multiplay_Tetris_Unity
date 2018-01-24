@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 public class ItemObject : MonoBehaviour {
     public Button item;
     public Text name;
     public Text host;
     public Text start;
 
-    public void setItem(string name,string host,bool start)
+    public void setItem(string name,string host,bool start, Button.ButtonClickedEvent onClick)
     {
         this.name.text = name;
         this.host.text = host;
@@ -17,11 +16,6 @@ public class ItemObject : MonoBehaviour {
             this.start.text = "start";
         else
             this.start.text = "wait";
-        this.item.onClick.AddListener(onClick);
-    }
-
-    void onClick()
-    {
-        SceneManager.LoadScene("Room");
+        this.item.onClick = onClick;
     }
 }
