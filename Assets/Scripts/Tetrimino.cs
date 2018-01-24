@@ -5,7 +5,8 @@ using UnityEngine;
 public class Tetrimino : MonoBehaviour {
 
     bool mIsBind = false;
-    public GameScene mpScene;
+    public SingleGameScene mpScene;
+   
 
 
 	// Use this for initialization
@@ -60,15 +61,15 @@ public class Tetrimino : MonoBehaviour {
         {
             this.transform.position += new Vector3(0, 1, 0);
 
-            FindObjectOfType<GameScene>().DeleteRow();
+            mpScene.DeleteRow();
 
             mIsBind = true;
 
-            FindObjectOfType<GameScene>().SpawnBlock();
+            mpScene.SpawnBlock();
         }
         else
         {
-            FindObjectOfType<GameScene>().GridUpdate(this);
+            mpScene.GridUpdate(this);
 
         }
     }
@@ -77,14 +78,14 @@ public class Tetrimino : MonoBehaviour {
     {
         foreach(Transform Block in transform)
         {
-            Vector2 tVec = FindObjectOfType<GameScene>().Round(Block.position);
+            Vector2 tVec = mpScene.Round(Block.position);
 
-            if(FindObjectOfType<GameScene>().CheckIsInside(tVec)==false)
+            if(mpScene.CheckIsInside(tVec)==false)
             {
                 return false;
             }
 
-            if (FindObjectOfType<GameScene>().GetGridTransform(tVec) != null && FindObjectOfType<GameScene>().GetGridTransform(tVec).parent != transform)
+            if (mpScene.GetGridTransform(tVec) != null && mpScene.GetGridTransform(tVec).parent != transform)
             {
                 return false;
                 
@@ -94,8 +95,9 @@ public class Tetrimino : MonoBehaviour {
         return true;
     }
 
-    public void SetScene(GameScene tpScene)
+    public void SetScene(SingleGameScene tpScene)
     {
         mpScene = tpScene;
     }
+  
 }

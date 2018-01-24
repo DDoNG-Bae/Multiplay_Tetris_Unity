@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameScene : MonoBehaviour
+public class SingleGameScene : MonoBehaviour
 {
-
     public GameObject[] mBlockContainer = new GameObject[7];
     public Tetrimino CurBlock;
     public Tetrimino NextBlock;
@@ -22,19 +21,17 @@ public class GameScene : MonoBehaviour
 
     public int mScore = 0;
 
-    
-
-    
-   
 
 
-     private void Awake()
+
+
+
+
+    private void Awake()
     {
-        SpawnBlock();
-        mGrid = new Transform[mGridWidth, mGridHeight];
-        StartCoroutine(FallDown());
-       
-        
+
+        Init();
+
     }
 
     // Use this for initialization
@@ -49,18 +46,27 @@ public class GameScene : MonoBehaviour
 
     }
 
+    public virtual void Init()
+    {
+        SpawnBlock();
+        mGrid = new Transform[mGridWidth, mGridHeight];
+        StartCoroutine(FallDown());
+
+     
+    }
+
 
     public void LeftBtnAction()
     {
-         CurBlock.LeftMove();
-       
+        CurBlock.LeftMove();
+
     }
-     
+
     public void RightBtnAction()
     {
-        
-          CurBlock.RightMove();
-        
+
+        CurBlock.RightMove();
+
     }
 
     public void DownBtnAction()
@@ -76,7 +82,7 @@ public class GameScene : MonoBehaviour
 
     public void BlockSaveBtnAction()
     {
-        if(SaveBlock == null)
+        if (SaveBlock == null)
         {
 
             SaveBlock = CurBlock;
@@ -87,9 +93,9 @@ public class GameScene : MonoBehaviour
         }
         else
         {
-      
 
-            
+
+
         }
     }
 
@@ -106,12 +112,12 @@ public class GameScene : MonoBehaviour
         if (NextBlock == null)
         {
             CurBlock = Instantiate<Tetrimino>(mBlockContainer[tCurType].GetComponentInChildren<Tetrimino>());
-            CurBlock.transform.position = new Vector3((mGridWidth+1)/2, mGridHeight -2, 0);
+            CurBlock.transform.position = new Vector3((mGridWidth + 1) / 2, mGridHeight - 2, 0);
 
             NextBlock = Instantiate<Tetrimino>(mBlockContainer[tNextType].GetComponentInChildren<Tetrimino>());
             NextBlock.transform.position = CoordBlockPos(NextBlockUIPos.position);
             NextBlock.enabled = false;
-            
+
         }
         else
         {
@@ -122,28 +128,29 @@ public class GameScene : MonoBehaviour
             NextBlock.transform.position = CoordBlockPos(NextBlockUIPos.position);
         }
 
-      
+        CurBlock.SetScene(this);
+
     }
 
     public bool CheckIsInside(Vector3 tVec)
     {
-        return (((int)tVec.x >=0) && ((int)tVec.x < mGridWidth) && (tVec.y > 0));
+        return (((int)tVec.x >= 0) && ((int)tVec.x < mGridWidth) && (tVec.y > 0));
     }
 
-    public Vector2 Round (Vector2 tVec)
+    public Vector2 Round(Vector2 tVec)
     {
         return new Vector2(Mathf.Round(tVec.x), Mathf.Round(tVec.y));
     }
 
     public void GridUpdate(Tetrimino tTetrimino)
     {
-        for(int tx = 0; tx<mGridWidth; tx++)
+        for (int tx = 0; tx < mGridWidth; tx++)
         {
-            for(int ty=0; ty<mGridHeight; ty++)
+            for (int ty = 0; ty < mGridHeight; ty++)
             {
                 if (mGrid[tx, ty] != null)
                 {
-                    if(mGrid[tx,ty].parent == tTetrimino.transform)
+                    if (mGrid[tx, ty].parent == tTetrimino.transform)
                     {
                         mGrid[tx, ty] = null;
                     }
@@ -151,11 +158,11 @@ public class GameScene : MonoBehaviour
             }
         }
 
-        foreach(Transform Block in tTetrimino.transform)
+        foreach (Transform Block in tTetrimino.transform)
         {
             Vector2 tVec = Round(Block.position);
 
-            if(tVec.y < mGridHeight)
+            if (tVec.y < mGridHeight)
             {
                 mGrid[(int)tVec.x, (int)tVec.y] = Block;
             }
@@ -165,7 +172,7 @@ public class GameScene : MonoBehaviour
 
     public Transform GetGridTransform(Vector2 tVec)
     {
-        if(tVec.y > mGridHeight -1)
+        if (tVec.y > mGridHeight - 1)
         {
             return null;
         }
@@ -177,11 +184,11 @@ public class GameScene : MonoBehaviour
 
     public void UpdateTestGrid()  //네트워크 전송용 Grid 업데이트
     {
-       for(int tx =0; tx<11;tx++)
+        for (int tx = 0; tx < 11; tx++)
         {
-            for(int ty=0;ty<23;ty++)
+            for (int ty = 0; ty < 23; ty++)
             {
-                if(mGrid[tx,ty] == null)
+                if (mGrid[tx, ty] == null)
                 {
                     mTestGrid[tx, ty] = 1;
                 }
@@ -192,10 +199,10 @@ public class GameScene : MonoBehaviour
             }
         }
     }
-    
-    IEnumerator FallDown()
+
+    public IEnumerator FallDown()
     {
-        for(; ; )
+        for (; ; )
         {
             CurBlock.DownMove();
 
@@ -205,20 +212,20 @@ public class GameScene : MonoBehaviour
 
     public bool IsRowFull(int tGridY) // 해당 열이 전부 차있는지 체크
     {
-        for(int tx = 0; tx<mGridWidth; tx++)
+        for (int tx = 0; tx < mGridWidth; tx++)
         {
-            if(mGrid[tx,tGridY] == null)
+            if (mGrid[tx, tGridY] == null)
             {
                 return false;
             }
-            
+
         }
         return true;
     }
 
     public void DeleteBlock(int tGridY) //전부 차있는 열의 블록 삭제
     {
-        for(int tx=0; tx<mGridWidth; tx++)
+        for (int tx = 0; tx < mGridWidth; tx++)
         {
             Destroy(mGrid[tx, tGridY].gameObject);
 
@@ -226,24 +233,24 @@ public class GameScene : MonoBehaviour
         }
     }
 
-    public void RowDown(int tGridY)  
+    public void RowDown(int tGridY)
     {
-        for(int tx=0; tx<mGridWidth; tx++)
+        for (int tx = 0; tx < mGridWidth; tx++)
         {
-            if(mGrid[tx,tGridY] !=null)
+            if (mGrid[tx, tGridY] != null)
             {
                 mGrid[tx, tGridY - 1] = mGrid[tx, tGridY];
 
                 mGrid[tx, tGridY] = null;
 
-                mGrid[tx, tGridY - 1].position+= new Vector3(0, -1, 0);
+                mGrid[tx, tGridY - 1].position += new Vector3(0, -1, 0);
             }
         }
     }
 
     public void AllRowDown(int tGridY) //블록 삭제 후 해당 열 위에 위치한 모든 열의 블록을 y축으로 -1씩 내림
     {
-        for (int ti = tGridY; ti < mGridHeight;ti++)
+        for (int ti = tGridY; ti < mGridHeight; ti++)
         {
             RowDown(ti);
         }
@@ -251,9 +258,9 @@ public class GameScene : MonoBehaviour
 
     public void DeleteRow()
     {
-        for(int ty=0; ty<mGridHeight; ty++)
+        for (int ty = 0; ty < mGridHeight; ty++)
         {
-            if(IsRowFull(ty)==true)
+            if (IsRowFull(ty) == true)
             {
                 DeleteBlock(ty);
 
@@ -279,11 +286,10 @@ public class GameScene : MonoBehaviour
 
         tCoordVec = mCamera.ScreenToWorldPoint(tUIPos);
 
-        tCoordVec = new Vector3(tCoordVec.x, tCoordVec.y-3, 0);
+        tCoordVec = new Vector3(tCoordVec.x, tCoordVec.y - 3, 0);
 
 
         return tCoordVec;
     }
 
-    
 }

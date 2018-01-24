@@ -19,5 +19,6 @@ public class ChatPannel : MonoBehaviour {
         chatingTemp.message.text = message;
 
         obj.transform.SetParent(this.chatPanel);
+        obj.transform.localPosition = new Vector3(0, 0, 0);
     }
 }
