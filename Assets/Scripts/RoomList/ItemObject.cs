@@ -22,6 +22,6 @@ public class ItemObject : MonoBehaviour {
 
     void onClick()
     {
-        SceneManager.LoadScene("Room");
+        SceneManager.LoadScene("Room2");
     }
 }
