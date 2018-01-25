@@ -22,6 +22,7 @@ public class Room : MonoBehaviour {
 
             //accessData(jo);
         });
+        
     }
 	
     void chating(string data)

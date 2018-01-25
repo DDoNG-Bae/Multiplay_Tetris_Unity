@@ -13,6 +13,7 @@ public class ListView : MonoBehaviour {
     void Start()
     {
 
+
     }
 
     private void binding(List<ItemData> itemList)
