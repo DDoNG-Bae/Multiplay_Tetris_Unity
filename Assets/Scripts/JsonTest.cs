@@ -29,7 +29,7 @@ public class JsonTest : MonoBehaviour {
     {
         if(buffer.Length != rowSize * colSize * sizeof(int))
         {
-            throw new ArgumentException("buffer.length is not equal (rowSize * colSize * sizeof(int)");
+            throw new ArgumentException("buffer.length is not equal (rowSize * colSize * sizeof(int))");
         }
             
         int[,] arr = new int[rowSize, colSize];
