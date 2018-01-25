@@ -10,21 +10,39 @@ public class JsonTest : MonoBehaviour {
 	void Start () {
         var socket = Socket.Connect("http://ec2-52-78-8-84.ap-northeast-2.compute.amazonaws.com:3000/");
         int[,] arr = new int[2, 2] { { 1, 2 }, { 3, 4 } };
-        byte[] buffer = intArrayToBuffer(arr);
-        string str = BitConverter.ToString(buffer);
-        byte[] buffer2 = strToByte(str);
 
-        int[,] arr2 = bufferToIntArray(buffer2, 2, 2);
+        byte[] buffer = intArrayToBuffer(arr);
+       //string str = BitConverter.ToString(buffer);//case 1
+
+        string str = Convert.ToBase64String(buffer);//case 2
+        //byte[] buffer2 = strToBuffer(str);
+        //int[,] arr2 = bufferToIntArray(buffer2, 2, 2);
 
         Debug.Log(str.Length);
 
-        socket.On("result",test);
+        socket.On("result",result);
         socket.On("connect", () =>{
             socket.Emit("test",str);
         });
-        
+         
 	}
-	
+
+
+    byte[] strToBuffer2(string str)
+    {
+        return Convert.FromBase64String(str);
+    }
+
+    byte[] strToBuffer(string str)
+    {
+        String[] arr = str.Split('-');
+        byte[] buffer = new byte[arr.Length];
+        for (int i = 0; i < buffer.Length; i++)
+            buffer[i] = Convert.ToByte(arr[i], 16);
+
+        return buffer;
+    }
+
     int[,] bufferToIntArray(byte[] buffer,int rowSize,int colSize)
     {
         if(buffer.Length != rowSize * colSize * sizeof(int))
@@ -44,22 +62,14 @@ public class JsonTest : MonoBehaviour {
         return buffer;
     }
 
-    byte[] strToByte(string str)
-    {
-        String[] arr = str.Split('-');
-        byte[] buffer = new byte[arr.Length];
-        for (int i = 0; i < buffer.Length; i++)
-            buffer[i] = Convert.ToByte(arr[i], 16);
+    
 
-        return buffer;
-    }
-
-    void test(string data)
+    void result(string data)
     {
         Debug.Log(data);
         string str = data.Substring(1, data.Length - 2);
         Debug.Log(str);
-        byte[] buffer3 = strToByte(str);
+        byte[] buffer3 = strToBuffer2(str);
         int[,] arr3 = bufferToIntArray(buffer3, 2, 2);
         Debug.Log(arr3[1, 1]);
     }
