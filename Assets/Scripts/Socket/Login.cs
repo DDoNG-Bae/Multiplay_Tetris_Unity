@@ -13,12 +13,7 @@ public class Login : MonoBehaviour {
 	void Start () {
        socket = Socket.Connect("http://ec2-52-78-8-84.ap-northeast-2.compute.amazonaws.com:3000/" + "channel");
         
-        /*
-         * res 
-         * "ID" : Wrong ID
-         * "PASS" Wrong PASSWORD
-         * "SUCCESS" : LOGIN Success
-         */
+       
         socket.On("loginResult",(string res)=>{
             Debug.Log(res);
 
