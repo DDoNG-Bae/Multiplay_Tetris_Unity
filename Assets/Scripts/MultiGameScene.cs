@@ -24,7 +24,7 @@ public class MultiGameScene : SingleGameScene
     string strCoordGrid;
     byte[] mBuffer;
 
-    public Socket socket;
+    Socket socket;
    
 
 
@@ -32,7 +32,7 @@ public class MultiGameScene : SingleGameScene
 
      private void Awake()
     {
-        Init();
+      
         
 
     }
@@ -41,6 +41,7 @@ public class MultiGameScene : SingleGameScene
     void Start()
     {
         socket = Login.socket;
+        Init();
 
 
 
@@ -102,11 +103,10 @@ public class MultiGameScene : SingleGameScene
         mBuffer = intArrayToBuffer(mCoordGrid);
 
         strCoordGrid = Convert.ToBase64String(mBuffer);
-<<<<<<< HEAD
-=======
 
+        Debug.Log(strCoordGrid);
         socket.Emit("sendGridInfo", strCoordGrid);
->>>>>>> 99f3462a3568e91efa10293fed700ea20da543ab
+
 
     }
 
