@@ -144,6 +144,7 @@ public class SingleGameScene : MonoBehaviour
 
     public void GridUpdate(Tetrimino tTetrimino)
     {
+
         for (int tx = 0; tx < mGridWidth; tx++)
         {
             for (int ty = 0; ty < mGridHeight; ty++)
@@ -151,6 +152,7 @@ public class SingleGameScene : MonoBehaviour
                 if (mGrid[tx, ty] != null)
                 {
                     if (mGrid[tx, ty].parent == tTetrimino.transform)
+
                     {
                         mGrid[tx, ty] = null;
                     }
