@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class ListView : MonoBehaviour {
 
     public GameObject itemObject;
@@ -12,7 +13,6 @@ public class ListView : MonoBehaviour {
 
     void Start()
     {
-
 
     }
 
