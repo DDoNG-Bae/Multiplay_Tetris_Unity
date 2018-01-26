@@ -159,16 +159,22 @@ public class SingleGameScene : MonoBehaviour
                 }
             }
         }
+      
 
         foreach (Transform Block in tTetrimino.transform)
         {
             Vector2 tVec = Round(Block.position);
 
+            
             if (tVec.y < mGridHeight)
             {
                 mGrid[(int)tVec.x, (int)tVec.y] = Block;
+
+            
             }
+           
         }
+     
 
     }
 
