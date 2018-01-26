@@ -64,9 +64,39 @@ public class MultiGameScene : SingleGameScene
 
     public void SendGridInfo()
     {
-
        
 
+        StringBuilder CoordStr = new StringBuilder();
+
+        for(int tx= 0; tx<mGridWidth; tx++)
+        {
+            for(int ty=0; ty<mGridHeight; ty++)
+            {
+                CoordStr.Append(mCoordGrid[tx, ty].ToString());
+            }
+        }
+
+        string test = CoordStr.ToString();
+
+        //serversend for convert CoordStr.ToString();
+      
+
+
+        int th = 0;
+
+    }
+
+    public void DecodeGrid(string OtherPlayerGridInfo)
+    {
+        int[,] OtherPlayerGrid = new int[11, 23];
+
+        for(int tx=0; tx<OtherPlayerGrid.GetLength(0); tx++)
+        {
+            for(int ty = 0;ty < OtherPlayerGrid.GetLength(1);ty++)
+            {
+                
+            }
+        }
     }
 
 
