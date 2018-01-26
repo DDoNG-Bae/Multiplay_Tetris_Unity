@@ -101,7 +101,7 @@ public class MultiGameScene : SingleGameScene
     {
         mBuffer = intArrayToBuffer(mCoordGrid);
 
-        string strCoordGrid = Convert.ToBase64String(mBuffer);
+        strCoordGrid = Convert.ToBase64String(mBuffer);
 
     }
 
