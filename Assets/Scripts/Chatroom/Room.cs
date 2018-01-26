@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using socket.io;
+using UnityEngine.SceneManagement;
 public class Room : MonoBehaviour {
 
+    bool mIsReady = false;
+  
     Socket socket;
     public ChatPannel chatPannel;
     public InputField msg;
@@ -23,10 +26,16 @@ public class Room : MonoBehaviour {
             //accessData(jo);
         });
         
+        socket.On("GameStart", (string data) => {
+            SceneManager.LoadScene("MultiGameScene");
+        });
+        
     }
-	
+
+
     void chating(string data)
     {
+        
         Debug.Log(data);
         JSONObject jo = new JSONObject(data);
         string name = jo["name"].str;
@@ -77,6 +86,20 @@ public class Room : MonoBehaviour {
                 Debug.Log("NULL");
                 break;
 
+        }
+    }
+
+    public void BtnReady()
+    {
+        if (mIsReady == false)
+        {
+            socket.Emit("Ready");
+            mIsReady = true;
+        }
+        else
+        {
+            socket.Emit("UnReady");
+            mIsReady = false;
         }
     }
 }

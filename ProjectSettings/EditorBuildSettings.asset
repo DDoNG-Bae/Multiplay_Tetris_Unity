@@ -11,9 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SingleGameScene.unity
     guid: e54a4f5dbf6e1d14faf9c457e828e09f
-  - enabled: 1
-    path: Assets/MainGameScene.unity
-    guid: 3096aa8a2a2d2e544ab51ea83370dcef
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/MultiLobbyScene.unity
     guid: edf0aa9e727ff154a8d67100d8867a96

@@ -190,25 +190,9 @@ public class SingleGameScene : MonoBehaviour
         }
     }
 
-    public void UpdateTestGrid()  //네트워크 전송용 Grid 업데이트
-    {
-        for (int tx = 0; tx < 11; tx++)
-        {
-            for (int ty = 0; ty < 23; ty++)
-            {
-                if (mGrid[tx, ty] == null)
-                {
-                    mTestGrid[tx, ty] = 1;
-                }
-                else
-                {
-                    mTestGrid[tx, ty] = 0;
-                }
-            }
-        }
-    }
+  
 
-    public IEnumerator FallDown()
+    public virtual IEnumerator FallDown()
     {
         for (; ; )
         {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.SceneManagement;
 using socket.io;
 
 public class MultiLobbyScene : MonoBehaviour {
