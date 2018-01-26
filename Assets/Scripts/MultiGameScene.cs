@@ -10,11 +10,11 @@ public class MultiGameScene : SingleGameScene
 
 
 
-    public int[,] mOtherPlayerGridInfo_1;
+    public int[,] mOtherPlayerGridInfo_1 = new int[11, 23];
     public int[,] mOtherPlayerGridInfo_2;
     public int[,] mOtherPlayerGridInfo_3;
 
-    public GameObject[,] OtherGrid_1;
+    public GameObject[,] OtherGrid_1 = new GameObject[11, 23];
     public GameObject OtherEdge_1;
 
 
@@ -80,7 +80,7 @@ public class MultiGameScene : SingleGameScene
 
     public void OtherGridInit()
     {
-        OtherGrid_1 = new GameObject[11, 23];
+       
         for(int tx=0; tx<mGridWidth; tx++)
         {
             for(int ty=0; ty<mGridHeight; ty++)
@@ -102,6 +102,11 @@ public class MultiGameScene : SingleGameScene
         mBuffer = intArrayToBuffer(mCoordGrid);
 
         strCoordGrid = Convert.ToBase64String(mBuffer);
+<<<<<<< HEAD
+=======
+
+        socket.Emit("sendGridInfo", strCoordGrid);
+>>>>>>> 99f3462a3568e91efa10293fed700ea20da543ab
 
     }
 
@@ -113,7 +118,7 @@ public class MultiGameScene : SingleGameScene
 
             CoordGrid(); // 서버 전송용 배열로 변환
             IncodeGridInfo();
-            socket.Emit("sendGridInfo", strCoordGrid);
+           
             OtherGridUpdate();
 
             yield return new WaitForSeconds(0.5f);
@@ -179,6 +184,7 @@ public class MultiGameScene : SingleGameScene
                 }
             }
         }
+     
     }
     
     
