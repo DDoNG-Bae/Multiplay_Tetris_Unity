@@ -4,7 +4,7 @@ using UnityEngine;
 using socket.io;
 using System;
 using System.Text;
-
+using MyUtility;
 public class MultiGameScene : SingleGameScene
 {
 
@@ -21,10 +21,13 @@ public class MultiGameScene : SingleGameScene
     public GameObject mBlock;
    
     public int[,] mCoordGrid;
+    string strCoordGrid;
     byte[] mBuffer;
 
     public Socket socket;
    
+
+
 
 
      private void Awake()
@@ -37,23 +40,24 @@ public class MultiGameScene : SingleGameScene
     // Use this for initialization
     void Start()
     {
-        socket = Socket.Connect("http://ec2-52-78-8-84.ap-northeast-2.compute.amazonaws.com:3000/" + "channel");
+        socket = Login.socket;
 
-        
+
+
         /*
          * res 
          * "ID" : Wrong ID
          * "PASS" Wrong PASSWORD
          * "SUCCESS" : LOGIN Success
          */
-        socket.On("loginResult", (string res) => {
-            Debug.Log(res);
+        socket.On("receiveGridInfo",receiveGridInfo);
+    }
 
-            if (res == "\"SUCCESS\"")
-            {
-               
-            }
-        });
+    void receiveGridInfo(string data)
+    {
+        string tmpStr = data.Substring(1, data.Length - 2);
+        byte[] tmpBuffer = MBuffer.strToBuffer(tmpStr);
+        mOtherPlayerGridInfo_1 = MBuffer.bufferToIntArray(tmpBuffer, 11, 23);
     }
 
     // Update is called once per frame
@@ -68,19 +72,21 @@ public class MultiGameScene : SingleGameScene
         SpawnBlock();
         mGrid = new Transform[mGridWidth, mGridHeight];
         mCoordGrid = new int[mGridWidth, mGridHeight];
-        StartCoroutine(FallDown());
         OtherGridInit();
+        StartCoroutine(FallDown());
+       
      
     }
 
     public void OtherGridInit()
     {
-        
+        OtherGrid_1 = new GameObject[11, 23];
         for(int tx=0; tx<mGridWidth; tx++)
         {
             for(int ty=0; ty<mGridHeight; ty++)
             {
-                OtherGrid_1[tx, ty] = Instantiate<GameObject>(mBlock);
+
+                OtherGrid_1[tx, ty] = Instantiate(mBlock);
                 OtherGrid_1[tx, ty].transform.parent = OtherEdge_1.transform;
                 OtherGrid_1[tx, ty].transform.localPosition = new Vector3(tx + 1, ty + 1, 0);
                 OtherGrid_1[tx, ty].gameObject.SetActive(false);
@@ -99,16 +105,21 @@ public class MultiGameScene : SingleGameScene
 
     }
 
-    
-
-    public void DecodeGridInfo(string OtherPlayerGridInfo)
+    public override IEnumerator FallDown()
     {
-        string strGrid = OtherPlayerGridInfo.Substring(1, OtherPlayerGridInfo.Length - 2);
-        byte[] tBuffer = strToBuffer2(strGrid);
-        mOtherPlayerGridInfo_1 = bufferToIntArray(tBuffer, 2, 2);
+        for (; ; )
+        {
+            CurBlock.DownMove();
 
+            CoordGrid(); // 서버 전송용 배열로 변환
+            IncodeGridInfo();
+            socket.Emit("sendGridInfo", strCoordGrid);
+            OtherGridUpdate();
 
+            yield return new WaitForSeconds(0.5f);
+        }
     }
+
 
     public void OtherGridUpdate()
     {
@@ -118,9 +129,11 @@ public class MultiGameScene : SingleGameScene
             {
                 if(mOtherPlayerGridInfo_1[tx,ty] == 1)
                 {
-                    GameObject Block = Instantiate(mBlock);
-                   // Block.transform.parent = OtherGrid_1.transform;
-                    Block.transform.localPosition = new Vector3(tx + 1, ty + 1, 0);
+                    OtherGrid_1[tx, ty].gameObject.SetActive(true);
+                }
+                else
+                {
+                    OtherGrid_1[tx, ty].gameObject.SetActive(false);
                 }
             }
         }
@@ -158,11 +171,11 @@ public class MultiGameScene : SingleGameScene
             {
                 if (mGrid[tx, ty] == null)
                 {
-                    mCoordGrid[tx, ty] = 1;
+                    mCoordGrid[tx, ty] = 0;
                 }
                 else
                 {
-                    mCoordGrid[tx, ty] = 0;
+                    mCoordGrid[tx, ty] = 1;
                 }
             }
         }
