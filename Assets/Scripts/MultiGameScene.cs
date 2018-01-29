@@ -89,7 +89,8 @@ public class MultiGameScene : SingleGameScene
 
                 OtherGrid_1[tx, ty] = Instantiate(mBlock);
                 OtherGrid_1[tx, ty].transform.parent = OtherEdge_1.transform;
-                OtherGrid_1[tx, ty].transform.localPosition = new Vector3(tx + 1, ty + 1, 0);
+                OtherGrid_1[tx, ty].transform.localScale = OtherGrid_1[tx, ty].transform.localScale * 0.3f;
+                OtherGrid_1[tx, ty].transform.localPosition = new Vector3(tx , ty , 0);
                 OtherGrid_1[tx, ty].gameObject.SetActive(false);
 
 

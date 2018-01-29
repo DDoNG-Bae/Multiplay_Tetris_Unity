@@ -47,12 +47,19 @@ public class Tetrimino : MonoBehaviour {
     }
     public void Rotation()
     {
-        if(CheckPosition() == true)
+        this.transform.Rotate(0, 0, 90);
+        if (CheckPosition() == true)
         {
-            this.transform.Rotate(0, 0, 90);
+
+        }
+        else
+        {
+            this.transform.Rotate(0, 0, -90);
         }
        
     }
+
+    
     public void DownMove()
     {
         this.transform.position += new Vector3(0, -1, 0);

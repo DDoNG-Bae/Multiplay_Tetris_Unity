@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class Login : MonoBehaviour {
     public InputField idInput;
     public InputField passInput;
+    public GameObject logout;
 
     public static Socket socket;
 	// Use this for initialization
@@ -22,6 +23,8 @@ public class Login : MonoBehaviour {
                 SceneManager.LoadScene("SelectGameTypeScene");
             }
         });
+
+        DontDestroyOnLoad(logout);
 
     }
 
