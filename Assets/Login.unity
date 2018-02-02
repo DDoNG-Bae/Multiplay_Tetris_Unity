@@ -142,7 +142,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idInput: {fileID: 758045867}
   passInput: {fileID: 1422494538}
+<<<<<<< HEAD
   logout: {fileID: 0}
+=======
+>>>>>>> 418411f657ecbc2a2370f2fdc1937348f3b8ca9f
 --- !u!4 &188604919
 Transform:
   m_ObjectHideFlags: 0
