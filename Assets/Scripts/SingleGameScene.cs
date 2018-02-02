@@ -86,18 +86,32 @@ public class SingleGameScene : MonoBehaviour
         {
 
             SaveBlock = CurBlock;
+            SaveGridInit(SaveBlock);
             SaveBlock.transform.position = CoordBlockPos(SaveBlockUIPos.position);
             SaveBlock.enabled = false;
-            GridUpdate(SaveBlock);
             SpawnBlock();
+           
         }
         else
         {
+            Tetrimino temp;
+            Vector3 CurPos = CurBlock.transform.position;
 
+            SaveGridInit(SaveBlock);
+
+            temp = SaveBlock;
+            SaveBlock = CurBlock;
+            CurBlock = temp;
+
+            SaveBlock.transform.position = CoordBlockPos(SaveBlockUIPos.position);
+            CurBlock.transform.position = CurPos;
 
 
         }
     }
+
+  
+    
 
     public void StraightFallBtnAction()
     {
@@ -176,6 +190,23 @@ public class SingleGameScene : MonoBehaviour
         }
      
 
+    }
+
+    public void SaveGridInit(Tetrimino SaveBlock)
+    {
+        foreach (Transform Block in SaveBlock.transform)
+        {
+            Vector2 tVec = Round(Block.position);
+
+
+            if (tVec.y < mGridHeight)
+            {
+                mGrid[(int)tVec.x, (int)tVec.y] = null;
+
+
+            }
+
+        }
     }
 
     public Transform GetGridTransform(Vector2 tVec)
