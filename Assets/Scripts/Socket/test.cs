@@ -1,15 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 using socket.io;
 public class test : MonoBehaviour {
 
     // Use this for initialization
     Socket socket;
     JSONObject obj;
-    public List<ItemData> roomList;
-    
+   
+   
     public ScrollView scrollView;
 
     void Start () {
@@ -40,16 +40,16 @@ public class test : MonoBehaviour {
         });
     }
 
-    void getRoomList()
+    public void getRoomList()
     {
         Debug.Log("getRoomList");
-        socket.Emit("getRoomList", "dsa", actionTest);
+        socket.Emit("getRoomList", "ass", actionTest);
 
     }
     public void actionTest(string data)
     {
         Debug.Log(data);
-        data = data.Substring(1, data.Length - 2);
+        data = data.Substring(2, data.Length - 4);
         //Debug.Log(d);
         string str = fixJson(data);
         Debug.Log(str);
@@ -57,6 +57,11 @@ public class test : MonoBehaviour {
         //JsonHelper.FromJson<RoomInfo>(str)
         Debug.Log(roomInfo[1].id);
         Debug.Log(roomInfo[1].name);
+
+        List<RoomInfo> RoomList = roomInfo.OfType<RoomInfo>().ToList();
+
+
+        Refresh(RoomList);
 
         //Debug.Log(jobj["qwer"]["user"]["asd"]["id"]);
         //for (int i = 0; i < jobj.list.Count; i++)
@@ -71,6 +76,15 @@ public class test : MonoBehaviour {
 
         //}
     }
+
+    public void Refresh(List<RoomInfo> RoomList)
+    {
+        scrollView.Delete();
+        scrollView.binding(RoomList);
+       
+    }
+
+  
     public void getRoom()
     {
         socket.Emit("getRoomList", "", (string data) =>

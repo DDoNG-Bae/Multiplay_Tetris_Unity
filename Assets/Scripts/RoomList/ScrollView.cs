@@ -19,19 +19,29 @@ public class ScrollView : MonoBehaviour {
 		
 	}
 
-    public void binding(List<ItemData> itemList)
+    public void binding(List<RoomInfo> itemList)
     {
         GameObject itemTemp;
         ItemObject itemObjectTemp;
 
-        foreach (ItemData item in itemList)
+        foreach (RoomInfo item in itemList)
         {
             itemTemp = Instantiate(itemObject) as GameObject;
             itemObjectTemp = itemTemp.GetComponent<ItemObject>();
 
-            itemObjectTemp.setItem(item.name, item.host, item.isStart);
+            itemObjectTemp.setItem(item.name, item.count, item.isStart);
 
             itemTemp.transform.SetParent(this.content);
         }
     }
+
+    public void Delete()
+    {
+        foreach(GameObject room in this.transform)
+        {
+            DestroyObject(room.gameObject);
+        }
+    }
+
+ 
 }

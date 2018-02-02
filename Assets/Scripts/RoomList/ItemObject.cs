@@ -5,19 +5,15 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class ItemObject : MonoBehaviour {
     public Button item;
-    public Text name;
-    public Text host;
+    public Text roomname;
+    public Text count;
     public Text start;
 
-    public void setItem(string name,string host,bool start)
+    public void setItem(string name,int count,int start)
     {
-        this.name.text = name;
-        this.host.text = host;
-        if (start)
-            this.start.text = "start";
-        else
-            this.start.text = "wait";
-        this.item.onClick.AddListener(onClick);
+        roomname.text = name;
+        this.count.text = count.ToString();
+        this.start.text = start.ToString();
     }
 
     void onClick()
