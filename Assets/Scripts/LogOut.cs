@@ -6,7 +6,7 @@ using socket.io;
 public class LogOut : MonoBehaviour {
 
     Socket socket;
-    string ti = "aa";
+    
 	// Use this for initialization
 	void Start () {
        

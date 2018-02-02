@@ -97,7 +97,7 @@ public class SingleGameScene : MonoBehaviour
             Tetrimino temp;
             Vector3 CurPos = CurBlock.transform.position;
 
-            SaveGridInit(SaveBlock);
+            SaveGridInit(CurBlock);
 
             temp = SaveBlock;
             SaveBlock = CurBlock;
