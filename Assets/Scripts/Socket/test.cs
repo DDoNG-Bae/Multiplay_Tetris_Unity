@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using socket.io;
+using UnityEngine.UI;
 public class test : MonoBehaviour {
 
     // Use this for initialization
     Socket socket;
     JSONObject obj;
+    public GameObject PopUp;
+    public InputField Roomname;
+    int roomNum;
+    
    
    
     public ScrollView scrollView;
@@ -37,6 +42,9 @@ public class test : MonoBehaviour {
         socket.Emit("createRoom", room, (string data) =>
         {
             Debug.Log("createRooM : " + data);
+            data =data.Substring(1, data.Length - 2);
+            roomNum = int.Parse(data);
+            Debug.Log(roomNum);
         });
     }
 
@@ -49,7 +57,7 @@ public class test : MonoBehaviour {
     public void actionTest(string data)
     {
         Debug.Log(data);
-        data = data.Substring(2, data.Length - 4);
+        data = data.Substring(1, data.Length - 2);
         //Debug.Log(d);
         string str = fixJson(data);
         Debug.Log(str);
@@ -60,7 +68,7 @@ public class test : MonoBehaviour {
 
         List<RoomInfo> RoomList = roomInfo.OfType<RoomInfo>().ToList();
 
-
+        int ti = 0;
         Refresh(RoomList);
 
         //Debug.Log(jobj["qwer"]["user"]["asd"]["id"]);
@@ -135,4 +143,22 @@ public class test : MonoBehaviour {
         value = "{\"Items\":" + value + "}";
         return value;
     }
+
+    public void OnCreatePopUp()
+    {
+        PopUp.gameObject.SetActive(true);
+
+    }
+
+    public void CreateRoom()
+    {
+        createRoom(Roomname.text);
+    }
+
+    public void CancelPopUp()
+    {
+        PopUp.gameObject.SetActive(false);
+    }
+
+    
 }

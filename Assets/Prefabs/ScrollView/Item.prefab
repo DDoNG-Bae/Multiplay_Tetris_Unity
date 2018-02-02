@@ -272,7 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 114725294520238760}
   roomname: {fileID: 114437384157174106}
-  host: {fileID: 114623639629586814}
+  count: {fileID: 114623639629586814}
   start: {fileID: 114407265803566654}
 --- !u!222 &222085178004922566
 CanvasRenderer:

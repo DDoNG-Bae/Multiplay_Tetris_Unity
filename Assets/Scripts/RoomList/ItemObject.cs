@@ -9,11 +9,12 @@ public class ItemObject : MonoBehaviour {
     public Text count;
     public Text start;
 
-    public void setItem(string name,int count,int start)
+    public void setItem(string name,int tcount,int tstart)
     {
         roomname.text = name;
-        this.count.text = count.ToString();
-        this.start.text = start.ToString();
+        count.text = tcount.ToString();
+        start.text = tstart.ToString();
+       
     }
 
     void onClick()
