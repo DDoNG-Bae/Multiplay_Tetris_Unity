@@ -8,7 +8,7 @@ public class LogOut : MonoBehaviour {
     Socket socket; string ti = "aa";
 	// Use this for initialization
 	void Start () {
-        socket = Login.socket;
+        
     }
 	
 	// Update is called once per frame
@@ -18,6 +18,8 @@ public class LogOut : MonoBehaviour {
 
     private void OnApplicationQuit()
     {
-        socket.Emit("QuitApplication", "a");
+        socket = Login.socket;
+        Debug.Log("logout");
+        socket.Emit("QuitApplication");
     }
 }

@@ -17,7 +17,6 @@ public class test : MonoBehaviour {
         createRoom("qwer");
         getRoomList();
         joinRoom("qwer");
-        
     }
 	
 	// Update is called once per frame
@@ -50,18 +49,76 @@ public class test : MonoBehaviour {
     public void actionTest(string data)
     {
         Debug.Log(data);
-        JSONObject jobj = new JSONObject(data).list[0];
-        //Debug.Log(jobj["qwer"]["user"]["asd"]["id"]);
-        for (int i = 0; i < jobj.list.Count; i++)
-        {
-            string roomName = jobj.keys[i];
-            string host = jobj.list[i]["host"].str;
-            bool isStart = jobj.list[i]["isStart"].b;
-            Debug.Log("roomList[" + i + "] roomName " + roomName + "host " + host + " isStart " + isStart);
+        data = data.Substring(1, data.Length - 2);
+        //Debug.Log(d);
+        string str = fixJson(data);
+        Debug.Log(str);
+        RoomInfo[] roomInfo = JsonHelper.FromJson<RoomInfo>(str);
+        //JsonHelper.FromJson<RoomInfo>(str)
+        Debug.Log(roomInfo[1].id);
+        Debug.Log(roomInfo[1].name);
 
-            roomList.Add(new ItemData(roomName, host, isStart));
-            scrollView.binding(roomList);
+        //Debug.Log(jobj["qwer"]["user"]["asd"]["id"]);
+        //for (int i = 0; i < jobj.list.Count; i++)
+        //{
+        //    string roomName = jobj.keys[i];
+        //    string host = jobj.list[i]["host"].str;
+        //    bool isStart = jobj.list[i]["isStart"].b;
+        //    Debug.Log("roomList[" + i + "] roomName " + roomName + "host " + host + " isStart " + isStart);
+
+        //    roomList.Add(new ItemData(roomName, host, isStart));
+        //    scrollView.binding(roomList);
+
+        //}
+    }
+    public void getRoom()
+    {
+        socket.Emit("getRoomList", "", (string data) =>
+          {
+              RoomInfo[] roomInfo = JsonHelper.FromJson<RoomInfo>(data);
+              //JsonHelper.FromJson<>
+              Debug.Log(roomInfo[0].id);
+              Debug.Log(roomInfo[0].name);
+          });
+    }
+
+    void accessData(JSONObject obj)
+    {
+        switch (obj.type)
+        {
+            case JSONObject.Type.OBJECT:
+                for (int i = 0; i < obj.list.Count; i++)
+                {
+                    string key = (string)obj.keys[i];
+                    JSONObject j = (JSONObject)obj.list[i];
+                    Debug.Log(key);
+                    accessData(j);
+                }
+                break;
+            case JSONObject.Type.ARRAY:
+                foreach (JSONObject j in obj.list)
+                {
+                    accessData(j);
+                }
+                break;
+            case JSONObject.Type.STRING:
+                Debug.Log(obj.str);
+                break;
+            case JSONObject.Type.NUMBER:
+                Debug.Log(obj.n);
+                break;
+            case JSONObject.Type.BOOL:
+                Debug.Log(obj.b);
+                break;
+            case JSONObject.Type.NULL:
+                Debug.Log("NULL");
+                break;
 
         }
+    }
+    string fixJson(string value)
+    {
+        value = "{\"Items\":" + value + "}";
+        return value;
     }
 }
