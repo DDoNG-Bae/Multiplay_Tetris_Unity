@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class SelectTypeScene : MonoBehaviour {
 
+    public GameObject logout;
 	// Use this for initialization
 	void Start () {
-		
+        DontDestroyOnLoad(logout);
 	}
 	
 	// Update is called once per frame
