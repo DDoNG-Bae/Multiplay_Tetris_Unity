@@ -9,7 +9,6 @@ public class LogOut : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-       
     }
 	
 	// Update is called once per frame
@@ -22,5 +21,6 @@ public class LogOut : MonoBehaviour {
         
         socket = Login.socket;
         socket.Emit("QuitApplication", "a");
+
     }
 }
